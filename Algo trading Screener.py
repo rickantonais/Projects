@@ -16,7 +16,7 @@ from plotly.offline import download_plotlyjs, plot, iplot,init_notebook_mode
 import plotly.graph_objs as go
 import plotly.offline as py
 import plotly.tools as tls
-
+init_notebook_mode(connected=True)
 
 def get_google_finance_intraday(ticker, period=60, days=1, exchange='EPA'):
  
@@ -33,8 +33,8 @@ def get_google_finance_intraday(ticker, period=60, days=1, exchange='EPA'):
     rows = []
     times = []
     for row in reader:
-        if re.match(r'^[a\d]', row[0]): #[] pour le faire sur toute la colonne, sinon il s'arrete au premier, ^ pour le debut de la chaine de caractere, le caractere a et \d designe un nombre decimale
-            if row[0].startswith('a'): #si le regex precedent a ete rencontre, alors ...
+        if re.match(r'^[a\d]', row[0]): 
+            if row[0].startswith('a'): 
                 start = datetime.datetime.fromtimestamp(int(row[0][1:])) #en format unix stamp
                 times.append(start)
             else:
@@ -100,7 +100,7 @@ def graphData(stock, MA1, MA2, MA3):
     #df=pd.read_csv(stock+'.csv',index_col=0)
     df=get_google_finance_intraday(stock)
     
-    startingPoint=len(df['Close'][MA2-1:])
+    startingPoint=len(df['Close'][MA2-1:]) #pour avoir un graphe propre et sans coupure, je commence avec la moyenne mobile la plus importante en periode
     
     #=========================Bougies + Volume==============================
     ax1 = go.Candlestick(x=df.index[-startingPoint:],
@@ -266,7 +266,7 @@ def graphData(stock, MA1, MA2, MA3):
 # input data
 #ticker = input("Stock to pull :")
 ticker = 'CA'
-ticker = (ticker,)
+ticker = (ticker,) 
 period = 60
 days = 1
 exchange = 'EPA'
