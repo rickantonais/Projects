@@ -10,7 +10,7 @@ class Integrator:
             
     def integrate(self):       
         deltaX=(self.maxi-self.mini)/(self.n-1)
-        i=np.arange(self.n)
+        i=np.arange(self.n-1) #!!
         xi=self.mini+i*deltaX
         fxi=xi**2*np.exp(-xi)*np.sin(xi)
         fonction=fxi*deltaX
