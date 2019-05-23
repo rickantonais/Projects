@@ -1,1 +1,13 @@
 Dataset comming from UCI machine learning repository : https://archive.ics.uci.edu/ml/datasets/Occupancy+Detection+#
+UCI website : https://archive.ics.uci.edu/ml/index.php
+
+Supervised learning classification problem for car occupancy in parking according to 4 features:
+- Light
+- CO2 concentration
+- Temperature
+- Humidity
+
+Dependent variable to predict : Occupancy
+
+Accuracy achieved on validation set : 97.09 % with XGBoost model
+Accuracy achieved on validation set : 97 % with Random Forest model
